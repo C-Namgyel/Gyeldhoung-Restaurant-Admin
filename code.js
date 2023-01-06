@@ -262,7 +262,6 @@ document.getElementById("orders").onclick = function() {
     let orderWait = 0;
     var orders;
     var preOrders;
-    console.log(getFullDates())
     readRecords("orders", {date: getFullDates()}, function(records) {
         orders = records;
         for (let yo = 0; yo < records.length; yo++) {
@@ -535,7 +534,7 @@ function updateMenu(records) {
             editCell.style.width = "20%";
             editCell.style.textAlign = "center";
             let delBtn = document.createElement("button")
-            delBtn.id = "del"+g
+            delBtn.id = "del"+indexNum
             delBtn.innerHTML = "Delete"
             delBtn.value = menuWithType[g].id;
             delBtn.onclick = function(btn) {
@@ -822,3 +821,56 @@ onRecordEvent("preOrders", function(record, eventType) {
         playSound("assets/arrived.mp3");
     }
 });
+//Tables
+var tabNum = 1;
+document.getElementById("tables").onclick = function() {
+    setScreen("tableScrn")
+    document.getElementById("homeBtn").hidden = false;
+    document.getElementById("tablesHolder").innerHTML = "Loading. Please wait..."
+    readRecords("tables", {}, function(records) {
+        let tableNumbers = JSON.parse(records[0].tableNumbers);
+        document.getElementById("tablesHolder").innerHTML = "";
+        for (t = 0; t < tableNumbers.length; t++) {
+            let inp = document.createElement("input")
+            inp.id = "table"+tabNum
+            inp.value = tableNumbers[t]
+            inp.placeholder = "Table Number"
+            inp.style.width = "100%";
+            document.getElementById("tablesHolder").appendChild(inp);
+            tabNum += 1;
+        }
+        document.getElementById("tableAdd").onclick = function() {
+            let inp = document.createElement("input")
+            inp.id = "table"+tabNum
+            inp.placeholder = "Table Number"
+            inp.style.width = "100%";
+            document.getElementById("tablesHolder").appendChild(inp);
+            tabNum += 1;
+            document.getElementById("tableDel").hidden = false;
+        }
+        document.getElementById("tableDel").onclick = function() {
+            tabNum -= 1;
+            document.getElementById("table"+tabNum).remove();
+            if (tabNum <= 1) {
+                document.getElementById("tableDel").hidden = true;
+            }
+        }
+        document.getElementById("tableSave").onclick = function() {
+            document.getElementById("tableSave").innerHTML = "Saving"
+            document.getElementById("tableSave").disabled = true;
+            let tabSave = []
+            for (ts = 1; ts < tabNum; ts++) {
+                tabSave.push(document.getElementById("table"+ts).value);
+            }
+            updateRecord("tables", {id:records[0].id, tableNumbers: JSON.stringify(tabSave)}, function(record, success) {
+                document.getElementById("tableSave").innerHTML = "Save"
+                document.getElementById("tableSave").disabled = false;
+                if (success == true) {
+                    message("Successfully saved", 0)
+                } else {
+                    message("Error!", 0)
+                }
+            });
+        }
+    })
+}

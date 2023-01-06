@@ -41,7 +41,8 @@
         <button class="homeBtns" id="orders" style="position: absolute; left: 15%; top: 75px; width: 70%; font-size: 20; border-style: solid; border-radius: 50px;">Order</button>
         <button class="homeBtns" id="bill" style="position: absolute; left: 15%; top: 125px; width: 70%; font-size: 20; border-style: solid; border-radius: 50px;">Bill</button>
         <button class="homeBtns" id="menu" style="position: absolute; left: 15%; top: 175px; width: 70%; font-size: 20; border-style: solid; border-radius: 50px;">Check Menu</button>
-        <button class="homeBtns" id="feedbacks" style="position: absolute; left: 15%; top: 225px; width: 70%; font-size: 20; border-style: solid; border-radius: 50px;">Feedback/Complaint</button>
+        <button class="homeBtns" id="tables" style="position: absolute; left: 15%; top: 225px; width: 70%; font-size: 20; border-style: solid; border-radius: 50px;">Tables</button>
+        <button class="homeBtns" id="feedbacks" style="position: absolute; left: 15%; top: 275px; width: 70%; font-size: 20; border-style: solid; border-radius: 50px;">Feedback/Complaint</button>
       </div>
       <div id="orderScrn" class="scrn" style="position: absoulte; width: 100%; height: 100%; left: 0%; top: 0%; width: 100%; height: 100%; scroll-behavior: smooth; overflow: auto; overflow-wrap: break-word;" hidden>
         <div style="position: fixed; left: 0%; top: 0px; width: 100%; height: 62.5px; color: white; font-size: 30; font-weight: bolder; text-align: center; background-image: linear-gradient(blue, blue, blue, white); z-index: 99;">Order</div>
@@ -88,6 +89,19 @@
         <div style="position: fixed; left: 0%; top: 0px; width: 100%; height: 62.5px; color: white; font-size: 30; font-weight: bolder; text-align: center; background-image: linear-gradient(blue, blue, blue, white); z-index: 99;">Feedback/Complaint</div>
         <div id="feedbackHolder" style="position: absolute; top: 75px; left: 0%; height: auto; width: 100%;"></div>
       </div>
+      <div id="tableScrn" class="scrn" style="position: absoulte; width: 100%; height: 100%; left: 0%; top: 0%; width: 100%; height: 100%; scroll-behavior: smooth; overflow: auto; overflow-wrap: break-word;" hidden>
+        <div style="position: fixed; left: 0%; top: 0px; width: 100%; height: 62.5px; color: white; font-size: 30; font-weight: bolder; text-align: center; background-image: linear-gradient(blue, blue, blue, white); z-index: 99;">Tables</div>
+        <div style="position: absolute; top: 75px; left: 10%; height: auto; width: 80%; border-width: 1px; border-style: solid;">
+          <div id="tablesHolder"></div>
+          <div style="text-align: center; width: 100%;">
+            <button id="tableDel">Delete</button>
+            <button id="tableAdd">Add</button>
+          </div>
+          <br><br><br>
+          <div style="text-align: center; width: 100%;">
+            <button id="tableSave">Save</button>
+          </div>
+        </div>
     </div>
   </body>
 </html>
